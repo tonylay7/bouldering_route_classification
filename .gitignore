@@ -1,0 +1,5 @@
+models/research/object_detection/training
+models/research/object_detection/faster_rcnn_inception_v2_coco_2018_01_28
+models/research/object_detection/inference_graph
+models/research/object_detection/aug_images
+models/research/object_detection/images
