@@ -10,7 +10,7 @@ Note that this project is still a work in progress so there's not much to explai
 
 ## 🗺️ Overview
 
-A third year project that uses image processing techniques and deep learning methods in an attempt to classify the grade of indoor bouldering routes on the Hueco 'V' scale based on a single image of the route. I used the **Detectron2 API** to train a **Mask R-CNN** model that allows for the detection of holds on a climbing wall through **object segmentation**. Information about the holds such as type of hold and the area of the hold is passed onto a **bidirectional GRU RNN**. Further information is extracted from the image of the route such as distance between successive holds, the total number of holds and the distance travelled in total from the first hold to the final hold.
+A third year project that uses image processing techniques and deep learning methods in an attempt to classify the grade of indoor bouldering routes on the Hueco 'V' scale based on a single image of the route. I used the **Detectron2 API** to train a **Mask R-CNN** model that allows for the detection of holds on a climbing wall through **object segmentation**. Information about the holds such as type of hold and the area of the hold is extracted from the Mask R-CNN model. Further information is extracted from the image of the route such as distance between successive holds, the total number of holds and the distance travelled in total from the first hold to the final hold. Scaling of the area of the hold is done based on the distance between detected dots on the climbing wall. All of this information is passed onto a **bidirectional GRU RNN** which classifies the route.
 
 ## 👀 Sneak-peak progress
 
