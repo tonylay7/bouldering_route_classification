@@ -6,14 +6,14 @@ NOTE: this README does not cover all the details in the paper, though it does se
 ## Table of Contents
 
   * [🗺️ Overview](#%EF%B8%8F-overview)
-  * [📷 Image Dataset for Mask R-CNN]
-  * [🖼️ Mask R-CNN for Hold Detection]
-  * [⬇️ Scaling Adjustments]
-  * [🎯 Route Detection]
-  * [🧗 Route Sequencing and Route Dataset]
-  * [🔄 Bidirectional RNN Classifier]
-  * [📊 Results]
-  * [✍️ Improvements for future work]
+  * [📷 Image Dataset for Mask R-CNN](#-image-dataset-for-mask-r-cnn)
+  * [🖼️ Mask R-CNN for Hold Detection](#%EF%B8%8F-mask-r-cnn-for-hold-detection)
+  * [⬇️ Scaling Adjustments](#%EF%B8%8F-scaling-adjustments)
+  * [🎯 Route Detection](#-route-detection)
+  * [🧗 Route Sequencing and Route Dataset](#-route-sequencing-and-route-dataset)
+  * [🔄 Bidirectional RNN Classifier](#-bidirectional-rnn-classifier)
+  * [📊 Results](#-results)
+  * [✍️ Improvements for future work](#%EF%B8%8F-improvements-for-future-work)
   
 
 ## 🗺️ Overview
