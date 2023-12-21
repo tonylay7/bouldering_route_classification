@@ -3,6 +3,11 @@
 
 NOTE: this README does not cover all the details in the paper, though it does serve as a summary of the final product of the project.
 
+
+**Third Year Project Screencast (Summary of the project)**
+
+[![YouTube Video](https://img.youtube.com/vi/5NlC4JaZFHE/0.jpg)](https://youtu.be/5NlC4JaZFHE)
+
 ## Table of Contents
 
   * [🗺️ Overview](#%EF%B8%8F-overview)
