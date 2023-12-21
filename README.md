@@ -39,6 +39,8 @@ A total of 100 photos of indoor climbing routes from two climbing centres in Man
 
 In order to prepare the images for training on a Mask R-CNN model, I used Labelme to carefully draw and label holds in images of climbing walls.  I decided to label only 40 images given the timeframe that I had left for the project, but this luckily was not a problem as there were a total of 1060 labelled objects. These labelled images were also passed through an image augmentation pipeline to produce similar images of holds but in different orientation and lighting in order to artificially increase the number of training samples.
 
+![Image_dataset](media/image_dataset.JPG)
+
 ## 🖼️ Mask R-CNN for Hold Detection
 
 I used Facebook's Detectron 2 API to access and fine-tune a pre-trained Mask R-CNN model to the task of detecting climbing holds. A low batch size of 2
@@ -51,15 +53,21 @@ a custom Trainer class that inherits Detectron2’s DefaultTrainer class.
 which includes random brightness, contrast, saturation, horizontal flip, vertical flip and
 lighting transformations in order to account for variations in hold orientations and variations in lighting in the training pipeline. All images are resized to 1300x800pixels for faster training.
 
+![Mask r-cnn example](media/mask_rcnn.JPG)
+
 ## ⬇️ Scaling Adjustments
 
 The pixel area of the detected holds from the Mask R-CNN model can be retrieved using the Green formula as Mask R-CNN outputs contours of object segmentations. However, photos of climbing walls are taken from different distances so the areas have to be normalised. Climbing walls have T-nut holes which are typically 15cm apart in the climbing centres that I took the photos in. 
 
 These were detected using adaptive thresholding and then the pixel distances between them were retrieved and averaged. Dividing 15cm by the pixel distance gives a ratio of cm/pixel which can be multipied to each climbing hold area (and also distance between holds) to normalise these values.
 
+![T-nut hole detection](media/t_nut_detection.JPG)
+
 ## 🎯 Route Detection 
 
 Each photo in the image dataset can contain multiple routes, a hold has a specific colour which assigns them to their respective route. To retrieve all holds of a single route, RGB K-means clustering is used first to check for black or white holds - if the holds are not black or white then their colour can be retrieved through their hue.
+
+![Route detection](media/route_detection.JPG)
 
 ## 🧗 Route Sequencing and Route Dataset
 
@@ -67,7 +75,11 @@ Holds are ordered by their height, where hold 0 is the first hold in the route a
 
 Since there is a sequence to each route, information can be retrieved between consecutive holds. The distance and direction between hold can be calculated - the distance is normalised through scaling adjustments.
 
+![Route sequencing](media/route_sequencing.JPG)
+
 The route dataset consists of 149 samples, each representing a route (some images in the image dataset contain multiple routes). Each sample in the dataset is a 2D structure, where each row represents a hold in the route (ordered such that row n is hold n), and each column is a feature of the hold (hold type, normalised area, distance to the next hold, direction to the next hold).
+
+![Route dataset sample](media/route_dataset.JPG)
 
 ## 🔄 Bidirectional RNN Classifier
 
@@ -81,11 +93,16 @@ Dropout rates of 0.2 are placed to further prevent overfitting, whilst also acco
 
 The output layer for the binary model has a sigmoid activation function as we wish to output predictions of 0 or 1, whilst the output layer for the multi-class model has a softmax function as we wish to output probability distributions for each of the 6 classes.
 
+![RNN visual](media/RNN_visual.jpg)
+
+
 ## 📊 Results
 
 I compared an RNN architecture to an MLP architecture that I created with similar settings. Both of the models were trained and tested using 5-fold cross validation - k was chosen as 5 in order to get an 80/20 training and testing split for each training iteration
 
 The RNN classifier is able to achieve 0.882 F1 score and 90.17% test accuracy on a binary classification task between 'Easy' and 'Hard' routes, whilst it is able to achieve a 0.424 F1 score and 63.24% in a 6-class classification task. Compared to the MLP, the F1 score is 0.015 higher, whilst the accuracy was 3.21% higher in the binary classification task. In the multi-class task, F1 score was 0.115 higher and the accuracy was 11.05% higher. The RNN proved to be a stronger performer throughout.
+
+![Results graph](media/results.jpg)
 
 ## ✍️ Improvements for future work
 
