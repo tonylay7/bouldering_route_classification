@@ -108,3 +108,4 @@ The RNN classifier is able to achieve 0.882 F1 score and 90.17% test accuracy on
 
 - Need to properly evaluate the Mask R-CNN model next time (evaluation data was lost unfortunately in the project)
 - Create a larger dataset of images and routes, there was a severe imbalance in the dataset
+- Consider automation of hold labelling with image processing techniques
